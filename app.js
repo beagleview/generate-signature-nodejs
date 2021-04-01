@@ -1,12 +1,13 @@
-var rs = require('jsrsasign');
+const express = require('express')
+const signature = require('./signature')
+const app = express()
 
+app.post('/generate', (req, res) => {
 
-function generate(data){
-    var sig = new KJUR.Signature({alg: 'SHA256withRSA'});
-    sig.init(privateKey);
-    sig.updateString(plainText);
-    var hSigVal = sig.sign();
-}
+    res.send('Hello World')
+})
 
-function verify(data){
-}
+app.listen(3000, () => {
+    console.log('Start server at port 3000.')
+})
+

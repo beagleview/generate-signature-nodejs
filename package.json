@@ -14,7 +14,8 @@
   "license": "ISC",
   "homepage": "https://github.com/beagleview/generate-signature-nodejs#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "jsrsasign": "^10.1.13",
-    "jsrsasign-util": "^1.0.4"
+    "jsrsasign-util": "^1.0.0"
   }
 }
