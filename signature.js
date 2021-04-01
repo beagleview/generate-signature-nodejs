@@ -1,7 +1,7 @@
 const rs = require('jsrsasign');
 const rsu = require('jsrsasign-util');
 
-export function generate(privateKey,data){
+module.exports.generate = function (privateKey,data){
     const sig = new rs.KJUR.Signature({alg: 'SHA256withRSA'})
     sig.init(privateKey)
     sig.updateString(data)
@@ -12,7 +12,7 @@ export function generate(privateKey,data){
     return signature
 }
 
-export function verify(publicKey,sigHex,data){
+module.exports.verify = function (publicKey,sigHex,data){
     const sig = new rs.KJUR.Signature({alg: 'SHA256withRSA'})
     const value = rsu.readFile(data)
     sig.init(publicKey)
@@ -26,3 +26,4 @@ function hexToBase64(hexString) {
         return String.fromCharCode(parseInt(a, 16))
     }).join(""))
 }
+

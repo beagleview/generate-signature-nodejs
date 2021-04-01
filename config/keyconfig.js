@@ -1,4 +1,4 @@
-export const key = {
-    "private_key": "",
-    "public_key": ""
+module.exports = {
+    private_key: "",
+    public_key: ""
 }
