@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/generate', (req, res) => {
     const timestamp = req.header("timestamp")
-    const data = timestamp
+    const data = timestamp + req.body
     const sigRes = signature.generate(config.private_key,data)
     res.send(sigRes)
 })
@@ -17,7 +17,7 @@ app.get('/verify', (req, res) => {
     const sign = req.header("Content-Signature")
     const timestamp = req.header("timestamp")
 
-    const data = timestamp
+    const data = timestamp + req.body
     const verifyRes = signature.verify(config.public_key,sign,data)
     res.send(verifyRes)
 })
