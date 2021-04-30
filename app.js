@@ -7,17 +7,18 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.post('/generate', (req, res) => {
+app.get('/generate', (req, res) => {
     const timestamp = req.header("timestamp")
-    const data = req.body + timestamp
-    const sigRes = signature.generate(config.key.private_key,data)
+    const data = timestamp
+    const sigRes = signature.generate(config.private_key,data)
     res.send(sigRes)
 })
-app.post('/verify', (req, res) => {
-    const signature = req.header("Content-Signature")
+app.get('/verify', (req, res) => {
+    const sign = req.header("Content-Signature")
     const timestamp = req.header("timestamp")
 
-    const verifyRes = signature.verify(config.key.public_key,"","")
+    const data = timestamp
+    const verifyRes = signature.verify(config.public_key,sign,data)
     res.send(verifyRes)
 })
 
